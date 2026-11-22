@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anatomy — Interactive Isometric Figures</title>
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --card: #131313;
+      --face: #1b1b1b;
+      --text: #a3a3a3;
+      --strong: #e6e6e6;
+      --muted: #6e6e6e;
+      --border: #2c2c2e;
+      --ring: #ffffff18;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    [data-theme="light"] {
+      --bg: #f2f2ef;
+      --card: #fbfbfa;
+      --face: #ffffff;
+      --text: #57575a;
+      --strong: #18181a;
+      --muted: #8c8c90;
+      --border: #d0d0d4;
+      --ring: #00000018;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 20px 64px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.55;
+      transition: background 180ms ease, color 180ms ease;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px 20px;
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--strong);
+    }
+    .sub {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: var(--text);
+      max-width: 640px;
+    }
+    .hdr-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 30px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--face);
+      color: var(--strong);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 1px var(--ring);
+    }
+    .btn:hover { opacity: 0.85; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      box-shadow: 0 0 0 1px var(--border);
+      overflow: hidden;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .thumb-link {
+      display: block;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .thumb {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      transition: transform 240ms ease;
+    }
+    .thumb-link:hover .thumb { transform: scale(1.02); }
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--strong);
+    }
+    .card-desc {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+      flex: 1;
+    }
+    .specs {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 6px;
+    }
+    .btn-primary {
+      background: var(--strong);
+      color: var(--bg);
+    }
+    footer {
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    footer a { color: var(--text); text-decoration: none; }
+    footer a:hover { color: var(--strong); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="kicker">Anatomy · Technical Explainers</div>
+        <h1>Interactive Isometric Figures</h1>
+        <p class="sub">Crafted mechanical and systems illustrations built with four-tone isometric SVG solids, depth-sorted assemblies, live physics models, and world-space WebGL shaders.</p>
+      </div>
+      <div class="hdr-actions">
+        <button type="button" class="btn" id="themeBtn">Light</button>
+        <a class="btn" href="https://github.com/tomguy91/anatomy" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </header>
+
+    <main class="grid" id="grid"></main>
+
+    <footer>
+      <span>tomguy91/anatomy</span>
+      <span>Built from shared kit/ &amp; figures/</span>
+    </footer>
+  </div>
+
+  <script>
+    const FIGURES = [
+      {
+        fig: "Fig 01",
+        tag: "Epic · 12 Assemblies",
+        title: "F1-26 · Single-Seater Formula Racing Car",
+        desc: "798 kg FIA single-seater on a machined setup scale pad: needle-tapered nosecone, 4-element front wing, pushrod suspension & steering rack, 1.6L V6 turbo-hybrid power unit, MGU-K/MGU-H, tilted radiators, Venturi floor, and working DRS + aero/thermal WebGL shaders.",
+        specs: "253 items · 225 solids · 19 tubes",
+        darkHref: "figures/f1-26-formula-car/formula-car.html",
+        lightHref: "figures/f1-26-formula-car/formula-car-light.html",
+        darkThumb: "figures/f1-26-formula-car/previews/dark-rest.png",
+        lightThumb: "figures/f1-26-formula-car/previews/light-rest.png",
+        repoHref: "https://github.com/tomguy91/anatomy/tree/main/figures/f1-26-formula-car"
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    const themeBtn = document.getElementById("themeBtn");
+
+    function render() {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      themeBtn.textContent = isLight ? "Dark" : "Light";
+      grid.innerHTML = FIGURES.map(f => {
+        const href = isLight ? f.lightHref : f.darkHref;
+        const thumb = isLight ? f.lightThumb : f.darkThumb;
+        return `
+          <article class="card">
+            <div class="card-top"><span>${f.fig}</span><span>${f.tag}</span></div>
+            <a class="thumb-link" href="${href}">
+              <img class="thumb" src="${thumb}" alt="${f.title}" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h2 class="card-title">${f.title}</h2>
+              <p class="card-desc">${f.desc}</p>
+              <div class="specs">${f.specs}</div>
+              <div class="actions">
+                <a class="btn btn-primary" href="${f.darkHref}">Open Dark</a>
+                <a class="btn" href="${f.lightHref}">Open Light</a>
+                <a class="btn" href="${f.repoHref}" target="_blank" rel="noopener">Source</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    themeBtn.addEventListener("click", () => {
+      const next = document.documentElement.getAttribute("data-theme") === "light" ? "" : "light";
+      if (next) document.documentElement.setAttribute("data-theme", "light");
+      else document.documentElement.removeAttribute("data-theme");
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
