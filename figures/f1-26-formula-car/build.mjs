@@ -10,7 +10,7 @@ import { kitScript, glScript } from "../../lib/inline-kit.mjs";
 import { makeDynamicParts } from "./parts.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const THEME = process.argv.includes("--light") ? "light" : "dark";
+const THEME = process.argv.includes("--mclaren") ? "mclaren" : process.argv.includes("--light") ? "light" : "dark";
 const DEG = Math.PI / 180;
 
 // Canvas & Camera (3/4 front-right automotive isometric hero view)
@@ -1076,12 +1076,40 @@ put("rearwing", [-203, 0, 69.0], PARTS.drsFlapSvg(0), {
 A.settle(R, P, { states: [0, 0.35, 0.7, 1], step: 1.0 });
 items.sort((a, b) => a.key - b.key);
 
+function materialOf(item) {
+  const n = item.name || "";
+  if (n === "gbx.rainLight" || n.startsWith("monocoque.hvport") || n.startsWith("pu.hvCable")) return "red";
+  if (n.startsWith("wheel.") || n.startsWith("gbx.cvboot") || n.startsWith("front.rackBoot")) return "rubber";
+  if (n.startsWith("pu.header") || n.startsWith("pu.collector") || n.startsWith("pu.collNeck") || n.startsWith("pu.exPort") || n === "pu.turboTurb" || n === "gbx.tailpipe" || n.startsWith("gbx.wastegate")) return "inconel";
+  if (n.startsWith("nose.diveplane") || n.startsWith("sidepod.overbite") || n.startsWith("monocoque.mirror.") || n === "halo.tcamBar" || n === "pu.mguk" || n === "monocoque.espack") return "blue";
+  if (
+    n === "nose.cone" || n === "nose.tip" || n.startsWith("nose.flap.") || n.startsWith("nose.endplate.") ||
+    n === "monocoque.fwdHull" || n.startsWith("monocoque.wall.") || n === "monocoque.fuelcell" ||
+    n === "halo.airboxBase" || n === "halo.airboxTop" ||
+    n.startsWith("sidepod.outer.") || n.startsWith("sidepod.top.") ||
+    n === "cover.spine" || n === "cover.sharkfin" ||
+    n.startsWith("rw.endplate.") || n === "rw.drsFlap" || n.startsWith("gbx.caliper.")
+  ) return "papaya";
+  if (
+    item.piece === "cooling" ||
+    n === "pu.block" || n.startsWith("pu.head.") || n.startsWith("pu.coil.") || n.startsWith("pu.fuelRail.") ||
+    n === "pu.oilTank" || n === "pu.mguh" || n === "pu.turboComp" || n === "pu.mgukGear" ||
+    n === "gbx.bellhousing" || n.startsWith("gbx.driveshaft.") || n.startsWith("gbx.upright.") || n.startsWith("gbx.brakeDisc.") ||
+    n.startsWith("gbx.coilover.") || n === "gbx.exBracket" ||
+    n === "front.heaveCoilover" || n === "front.steerRack" || n === "front.inboardDyn" || n.startsWith("front.brake.") || n.startsWith("front.rackPedestal.") ||
+    n.startsWith("monocoque.pedal.") || n === "monocoque.steerCol" || n.startsWith("monocoque.pitot") || n === "monocoque.harnessBar" || n === "monocoque.ecu" ||
+    n.startsWith("rw.drsHinge.")
+  ) return "metal";
+  return "carbon";
+}
+
 const groups = items.map((item, idx) => {
   const [mx, my, mz] = item.move;
   const rideAttr = item.ride !== item.piece ? ` data-ride="${item.ride}"` : "";
   const dynAttr = item.dyn ? ` data-dyn="${item.dyn}"` : "";
   const spAttr = item.sprung ? ` data-sprung="1"` : "";
-  return `<g class="it" data-piece="${item.piece}"${rideAttr}${dynAttr}${spAttr} data-k="${item.key.toFixed(2)}" data-m="${mx.toFixed(1)},${my.toFixed(1)},${mz.toFixed(1)}" data-i="${idx}">${item.svg}</g>`;
+  const matAttr = ` data-mat="${materialOf(item)}"`;
+  return `<g class="it" data-piece="${item.piece}"${rideAttr}${dynAttr}${spAttr}${matAttr} data-k="${item.key.toFixed(2)}" data-m="${mx.toFixed(1)},${my.toFixed(1)},${mz.toFixed(1)}" data-i="${idx}">${item.svg}</g>`;
 });
 
 const LABEL_TEXT =
@@ -1134,7 +1162,7 @@ const PARTS_BAR = ORDER.map(
 
 const corners = `<div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 1</span><span class="iso-plate-corner" data-corner="title">F1-26 · Single-Seater Formula Car</span><span class="iso-plate-corner" data-corner="readout" data-readout>0 km/h · 798 kg · 1.6L V6-H</span></div>`;
 
-const controls = `<div class="fc-controls"><div class="fc-btns"><button type="button" class="fc-btn" data-kind="run" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Run</button><button type="button" class="fc-btn" data-kind="drs" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>DRS</button><button type="button" class="fc-btn" data-kind="brake" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Brake</button><button type="button" class="fc-btn" data-kind="steer" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Steer</button><button type="button" class="fc-btn" data-kind="explode" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Explode</button><label class="fc-slider-wrap"><span>Speed</span><input class="fc-slider" type="range" min="0" max="348" value="0" data-speed aria-label="Airspeed in km/h"/></label><button type="button" class="fc-btn" data-kind="theme" aria-pressed="false" title="Switch dark/light theme">Light</button></div><span class="fc-live" aria-live="polite" data-live></span></div>`;
+const controls = `<div class="fc-controls"><div class="fc-btns"><button type="button" class="fc-btn" data-kind="run" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Run</button><button type="button" class="fc-btn" data-kind="drs" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>DRS</button><button type="button" class="fc-btn" data-kind="brake" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Brake</button><button type="button" class="fc-btn" data-kind="steer" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Steer</button><button type="button" class="fc-btn" data-kind="explode" aria-pressed="false"><span class="fc-lamp" aria-hidden="true"></span>Explode</button><label class="fc-slider-wrap"><span>Speed</span><input class="fc-slider" type="range" min="0" max="348" value="0" data-speed aria-label="Airspeed in km/h"/></label><button type="button" class="fc-btn" data-kind="theme" aria-pressed="false" title="Cycle Dark / Light / Papaya livery">Theme</button></div><span class="fc-live" aria-live="polite" data-live></span></div>`;
 
 const stage = `<div class="fc-stage" tabindex="0" role="region" aria-label="Interactive isometric anatomy of a single-seater Formula racing car">${backSvg}<canvas class="fc-aero-back" aria-hidden="true"></canvas>${frontSvg}<canvas class="fc-fx-front" aria-hidden="true"></canvas></div>`;
 
@@ -1157,7 +1185,7 @@ const page = k.pageHtml({
   width: 1100,
 });
 
-const outName = THEME === "light" ? "formula-car-light.html" : "formula-car.html";
+const outName = THEME === "mclaren" ? "formula-car-mclaren.html" : THEME === "light" ? "formula-car-light.html" : "formula-car.html";
 writeFileSync(join(HERE, outName), page);
 console.log("wrote", outName, `${(page.length / 1024).toFixed(0)} KB`, `${items.length} items`, `${R.solids.length} solids`, `${R.tubes.length} tubes`);
 

@@ -726,20 +726,30 @@ if (btnExplode) {
   });
 }
 
+const THEMES = ["dark", "light", "mclaren"];
+const THEME_LABEL = { dark: "Dark", light: "Light", mclaren: "Papaya" };
 const btnTheme = root.querySelector('[data-kind="theme"]');
+function currentTheme() {
+  const host = root.closest(".iso") || document.body;
+  const t = host.getAttribute("data-theme") || "dark";
+  return THEMES.includes(t) ? t : "dark";
+}
 function syncThemeBtn() {
   if (!btnTheme) return;
-  const light = isLight();
-  btnTheme.textContent = light ? "Dark" : "Light";
-  btnTheme.setAttribute("aria-pressed", light ? "true" : "false");
+  const cur = currentTheme();
+  const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
+  btnTheme.textContent = THEME_LABEL[next];
+  btnTheme.setAttribute("aria-pressed", cur !== "dark" ? "true" : "false");
+  btnTheme.title = `Current: ${THEME_LABEL[cur]} — click for ${THEME_LABEL[next]}`;
 }
 syncThemeBtn();
 if (btnTheme) {
   btnTheme.addEventListener("click", () => {
     const host = root.closest(".iso") || document.body;
-    const next = isLight() ? "dark" : "light";
-    if (next === "light") host.setAttribute("data-theme", "light");
-    else host.removeAttribute("data-theme");
+    const cur = currentTheme();
+    const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
+    if (next === "dark") host.setAttribute("data-theme", "dark");
+    else host.setAttribute("data-theme", next);
     syncThemeBtn();
     const tel = telemetry({ speedKmh: S.speed.x, drs: S.drs.x, brake: S.brake.x, steerDeg: S.steer.x, brakeTempC: S.brakeTempC });
     drawShaders(tel);

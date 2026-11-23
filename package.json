@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Collection of interactive isometric Anatomy technical figures and explainers.",
   "scripts": {
-    "build:f1-26": "node figures/f1-26-formula-car/build.mjs && node figures/f1-26-formula-car/build.mjs --light",
+    "build:f1-26": "node figures/f1-26-formula-car/build.mjs && node figures/f1-26-formula-car/build.mjs --light && node figures/f1-26-formula-car/build.mjs --mclaren",
     "audit:f1-26": "node figures/f1-26-formula-car/build.mjs --audit"
   }
 }

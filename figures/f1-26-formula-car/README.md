@@ -4,6 +4,10 @@ Interactive isometric Anatomy of a modern FIA single-seater Formula racing car (
 
 ## Previews
 
+| Papaya Livery (McLaren-Inspired) | Papaya Livery (Exploded) |
+|---|---|
+| ![F1-26 McLaren Papaya Rest](previews/mclaren-rest.png) | ![F1-26 McLaren Papaya Exploded](previews/mclaren-exploded.png) |
+
 | Assembled (Dark) | Exploded (12 Assemblies) |
 |---|---|
 | ![F1-26 Dark Rest](previews/dark-rest.png) | ![F1-26 Dark Exploded](previews/dark-exploded.png) |

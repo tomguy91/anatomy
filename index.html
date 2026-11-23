@@ -217,8 +217,10 @@
         specs: "253 items · 225 solids · 19 tubes",
         darkHref: "figures/f1-26-formula-car/formula-car.html",
         lightHref: "figures/f1-26-formula-car/formula-car-light.html",
+        mclarenHref: "figures/f1-26-formula-car/formula-car-mclaren.html",
         darkThumb: "figures/f1-26-formula-car/previews/dark-rest.png",
         lightThumb: "figures/f1-26-formula-car/previews/light-rest.png",
+        mclarenThumb: "figures/f1-26-formula-car/previews/mclaren-rest.png",
         repoHref: "https://github.com/tomguy91/anatomy/tree/main/figures/f1-26-formula-car"
       }
     ];
@@ -230,8 +232,8 @@
       const isLight = document.documentElement.getAttribute("data-theme") === "light";
       themeBtn.textContent = isLight ? "Dark" : "Light";
       grid.innerHTML = FIGURES.map(f => {
-        const href = isLight ? f.lightHref : f.darkHref;
-        const thumb = isLight ? f.lightThumb : f.darkThumb;
+        const href = isLight ? f.lightHref : f.mclarenHref;
+        const thumb = isLight ? f.lightThumb : f.mclarenThumb;
         return `
           <article class="card">
             <div class="card-top"><span>${f.fig}</span><span>${f.tag}</span></div>
@@ -243,8 +245,9 @@
               <p class="card-desc">${f.desc}</p>
               <div class="specs">${f.specs}</div>
               <div class="actions">
-                <a class="btn btn-primary" href="${f.darkHref}">Open Dark</a>
-                <a class="btn" href="${f.lightHref}">Open Light</a>
+                <a class="btn btn-primary" href="${f.mclarenHref}" style="background:#ff8000;color:#0b0d10">Papaya Livery</a>
+                <a class="btn" href="${f.darkHref}">Dark</a>
+                <a class="btn" href="${f.lightHref}">Light</a>
                 <a class="btn" href="${f.repoHref}" target="_blank" rel="noopener">Source</a>
               </div>
             </div>

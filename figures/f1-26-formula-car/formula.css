@@ -32,6 +32,161 @@
   --fc-lamp-exp-glow: #00000033;
 }
 
+.iso[data-theme="mclaren"] {
+  --anatomy-page: #0a0c10;
+  --anatomy-card: #111419;
+  --anatomy-text: #a8b0bc;
+  --anatomy-strong: #f0f4f8;
+  --anatomy-muted: #6e7785;
+  --anatomy-paper: #111419;
+  --anatomy-face: #181c24;
+  --anatomy-top: #20252f;
+  --anatomy-shade-0: #0e1116;
+  --anatomy-shade-1: #13171e;
+  --anatomy-shade-2: #171c25;
+  --anatomy-shade-3: #1c222d;
+  --anatomy-lit-top: #ffaa4c;
+  --anatomy-lit-shade: #d96b08;
+  --anatomy-hi: #c8d1de;
+  --anatomy-mid: #636d7d;
+  --anatomy-lo: #363d49;
+  --anatomy-faint: #242a34;
+  --anatomy-lit: #ff9c38;
+  --anatomy-dot: #ff9d3b;
+}
+
+[data-theme="mclaren"] .fc {
+  --fc-blend: screen;
+  --fc-btn-hover: #212733;
+  --fc-btn-ring: #ff800038;
+  --fc-part-ring: #ffffff14;
+  --fc-part-hover: #ff800014;
+  --fc-lamp-off: #4a5260;
+  --fc-lamp-run: #38e59b;
+  --fc-lamp-run-glow: #38e59b77;
+  --fc-lamp-drs: #2ea4ff;
+  --fc-lamp-drs-glow: #2ea4ff88;
+  --fc-lamp-brake: #ff5526;
+  --fc-lamp-brake-glow: #ff552699;
+  --fc-lamp-exp: #ff8c1a;
+  --fc-lamp-exp-glow: #ff8c1a77;
+}
+
+[data-theme="mclaren"] .iso-plate {
+  box-shadow: 0 0 0 1px #ff800044;
+}
+
+[data-theme="mclaren"] .iso-plate-corner[data-corner="fig"],
+[data-theme="mclaren"] .fc-part[data-on] .fc-num {
+  color: #ff962e;
+}
+
+[data-theme="mclaren"] .it[data-mat="papaya"] {
+  --anatomy-paper: #b85000;
+  --anatomy-face: #d96200;
+  --anatomy-top: #ff8d1a;
+  --anatomy-shade-3: #e86e00;
+  --anatomy-shade-2: #c95a00;
+  --anatomy-shade-1: #a44600;
+  --anatomy-shade-0: #783100;
+  --anatomy-hi: #ffd099;
+  --anatomy-mid: #f09542;
+  --anatomy-lo: #6e2d00;
+  --anatomy-faint: #964200;
+  --anatomy-dot: #ffe0b8;
+  --anatomy-lit-top: #ffb25c;
+  --anatomy-lit-shade: #e67610;
+}
+
+[data-theme="mclaren"] .it[data-mat="carbon"] {
+  --anatomy-paper: #16191f;
+  --anatomy-face: #1e222a;
+  --anatomy-top: #282d38;
+  --anatomy-shade-3: #212630;
+  --anatomy-shade-2: #1a1e26;
+  --anatomy-shade-1: #14171e;
+  --anatomy-shade-0: #0e1015;
+  --anatomy-hi: #80899a;
+  --anatomy-mid: #505868;
+  --anatomy-lo: #323845;
+  --anatomy-faint: #272d38;
+  --anatomy-dot: #a8b2c4;
+}
+
+[data-theme="mclaren"] .it[data-mat="blue"] {
+  --anatomy-paper: #084a80;
+  --anatomy-face: #0d66ad;
+  --anatomy-top: #2ea6ff;
+  --anatomy-shade-3: #148ae8;
+  --anatomy-shade-2: #0c6fc2;
+  --anatomy-shade-1: #075496;
+  --anatomy-shade-0: #043b6b;
+  --anatomy-hi: #a6ddff;
+  --anatomy-mid: #54b8ff;
+  --anatomy-lo: #0a467a;
+  --anatomy-faint: #083c6b;
+  --anatomy-dot: #c7ecff;
+}
+
+[data-theme="mclaren"] .it[data-mat="metal"] {
+  --anatomy-paper: #48505c;
+  --anatomy-face: #657080;
+  --anatomy-top: #bcc6d6;
+  --anatomy-shade-3: #9da8b8;
+  --anatomy-shade-2: #808b9c;
+  --anatomy-shade-1: #636d7d;
+  --anatomy-shade-0: #464f5c;
+  --anatomy-hi: #e8eef7;
+  --anatomy-mid: #94a0b2;
+  --anatomy-lo: #505968;
+  --anatomy-faint: #464f5e;
+  --anatomy-dot: #ffffff;
+}
+
+[data-theme="mclaren"] .it[data-mat="inconel"] {
+  --anatomy-paper: #593a17;
+  --anatomy-face: #785020;
+  --anatomy-top: #e3b274;
+  --anatomy-shade-3: #c49152;
+  --anatomy-shade-2: #a37339;
+  --anatomy-shade-1: #805726;
+  --anatomy-shade-0: #5c3c16;
+  --anatomy-hi: #ffe0ad;
+  --anatomy-mid: #c99658;
+  --anatomy-lo: #6e4a1f;
+  --anatomy-faint: #63421b;
+  --anatomy-dot: #ffebc7;
+}
+
+[data-theme="mclaren"] .it[data-mat="rubber"] {
+  --anatomy-paper: #121316;
+  --anatomy-face: #181a1f;
+  --anatomy-top: #23262d;
+  --anatomy-shade-3: #1d1f25;
+  --anatomy-shade-2: #17191e;
+  --anatomy-shade-1: #121418;
+  --anatomy-shade-0: #0b0c0f;
+  --anatomy-hi: #8c93a3;
+  --anatomy-mid: #4d5360;
+  --anatomy-lo: #313640;
+  --anatomy-faint: #242830;
+  --anatomy-dot: #ff9c38;
+}
+
+[data-theme="mclaren"] .it[data-mat="red"] {
+  --anatomy-paper: #7d1414;
+  --anatomy-face: #a81c1c;
+  --anatomy-top: #ff453a;
+  --anatomy-shade-3: #e03028;
+  --anatomy-shade-2: #ba221c;
+  --anatomy-shade-1: #911713;
+  --anatomy-shade-0: #660e0b;
+  --anatomy-hi: #ff9a94;
+  --anatomy-mid: #e64b42;
+  --anatomy-lo: #6e1410;
+  --anatomy-faint: #5e100d;
+}
+
 .fc .iso-plate {
   padding: 46px 20px 66px;
   overflow: hidden;
